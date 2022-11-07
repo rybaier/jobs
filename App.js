@@ -11,6 +11,7 @@ import DeckScreen from './screens/DeckScreen';
 import MapScreen from './screens/MapScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import SettingScreen from './screens/SettingScreen';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 const Stack = createNativeStackNavigator();
@@ -20,7 +21,14 @@ const Drawer = createDrawerNavigator();
 const SecondaryNavigator = () => {
   return (
     <Stack.Navigator>
-      <Stack.Screen name='Review' component={ ReviewScreen } />
+      <Stack.Screen name='Review' component={ ReviewScreen } options={{
+        title: 'Review Jobs',
+        headerRight: () => (
+          <TouchableOpacity onPress={ () => navigate("Settings")}>
+            <Text style= {styles.buttonText}> Settings </Text>
+          </TouchableOpacity>
+        )
+      }} />
       <Stack.Screen name= 'Settings' component={ SettingScreen } />
     </Stack.Navigator>
   )
@@ -30,6 +38,7 @@ const MainNavigator = () => {
     <Tab.Navigator>
     <Tab.Screen name= 'Map' component={ MapScreen }/>
     <Tab.Screen name = 'Deck' component={ DeckScreen } />
+    <Tab.Screen name = 'Review' component={ SecondaryNavigator} options={{ headerShown: false}}/>
   </Tab.Navigator>
   )
 }
@@ -48,11 +57,11 @@ export default function App() {
 
 
   return (
-    <NavigationContainer >
+    <NavigationContainer ref={ navigationRef }>
       <Stack.Navigator initialRouteName='Welcome'>
         <Stack.Screen name = "Primary" component={ PrimaryNavigator } options={{ headerShown: false }}/>
         <Stack.Screen name = 'Main' component= { MainNavigator } options={{ headerShown: false }}/>
-        <Stack.Screen name = "Secodary" component={ SecondaryNavigator } options={{ headerShown: false }}/>
+        <Stack.Screen name = "Secondary" component={ SecondaryNavigator } options={{ headerShown: false }}/>
       </Stack.Navigator>
     </NavigationContainer>
   );
@@ -65,4 +74,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  buttonText: {
+    color: 'rgba(0,122,255,1)'
+  }
 });
