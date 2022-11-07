@@ -17,7 +17,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 const Drawer = createDrawerNavigator();
 
-const SecondNavigator = () => {
+const SecondaryNavigator = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name='Review' component={ ReviewScreen } />
@@ -30,11 +30,17 @@ const MainNavigator = () => {
     <Tab.Navigator>
     <Tab.Screen name= 'Map' component={ MapScreen }/>
     <Tab.Screen name = 'Deck' component={ DeckScreen } />
-    <Tab.Screen name = 'SecondNavigator' component={ SecondNavigator }
-     options={{
-      headerShown: false
-     }} />
   </Tab.Navigator>
+  )
+}
+
+const PrimaryNavigator = () => {
+  return (
+      <Tab.Navigator initialRouteName='Welcome'>
+        <Tab.Screen name = "Welcome" component={ WelcomeScreen }/>
+        <Tab.Screen name = "Auth" component={ AuthScreen } />
+        <Tab.Screen name = 'Main' component= { MainNavigator } options={{ headerShown: false }}/>
+      </Tab.Navigator>
   )
 }
 
@@ -42,12 +48,12 @@ export default function App() {
 
 
   return (
-    <NavigationContainer ref= { navigationRef }>
-      <Tab.Navigator initialRouteName='Welcome'>
-        <Tab.Screen name = "Welcome" component={ WelcomeScreen }/>
-        <Tab.Screen name = "Auth" component={ AuthScreen } />
-        <Tab.Screen name = 'Main' component= { MainNavigator } options={{ headerShown: false }}/>
-      </Tab.Navigator>
+    <NavigationContainer >
+      <Stack.Navigator initialRouteName='Welcome'>
+        <Stack.Screen name = "Primary" component={ PrimaryNavigator } options={{ headerShown: false }}/>
+        <Stack.Screen name = 'Main' component= { MainNavigator } options={{ headerShown: false }}/>
+        <Stack.Screen name = "Secodary" component={ SecondaryNavigator } options={{ headerShown: false }}/>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 }
