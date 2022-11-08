@@ -12,6 +12,9 @@ import MapScreen from './screens/MapScreen';
 import ReviewScreen from './screens/ReviewScreen';
 import SettingScreen from './screens/SettingScreen';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { Provider } from 'react-redux';
+import store from './store';
+
 
 
 const Stack = createNativeStackNavigator();
@@ -57,13 +60,15 @@ export default function App() {
 
 
   return (
-    <NavigationContainer ref={ navigationRef }>
-      <Stack.Navigator initialRouteName='Welcome'>
-        <Stack.Screen name = "Primary" component={ PrimaryNavigator } options={{ headerShown: false }}/>
-        <Stack.Screen name = 'Main' component= { MainNavigator } options={{ headerShown: false }}/>
-        <Stack.Screen name = "Secondary" component={ SecondaryNavigator } options={{ headerShown: false }}/>
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Provider store ={ store }>
+      <NavigationContainer ref={ navigationRef }>
+        <Stack.Navigator initialRouteName='Welcome'>
+          <Stack.Screen name = "Primary" component={ PrimaryNavigator } options={{ headerShown: false }}/>
+          <Stack.Screen name = 'Main' component= { MainNavigator } options={{ headerShown: false }}/>
+          <Stack.Screen name = "Secondary" component={ SecondaryNavigator } options={{ headerShown: false }}/>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   );
 }
 
