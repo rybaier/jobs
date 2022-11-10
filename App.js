@@ -6,7 +6,7 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { navigationRef, navigate } from './RootNavigation';
 import AuthScreen from './screens/AuthScreen';
-import WelcomeScreen from './screens/WelcomeScren';
+import WelcomeScreen from './screens/WelcomeScreen';
 import DeckScreen from './screens/DeckScreen';
 import MapScreen from './screens/MapScreen';
 import ReviewScreen from './screens/ReviewScreen';

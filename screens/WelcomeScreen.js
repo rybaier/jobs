@@ -1,10 +1,19 @@
-import React  from "react";
+import React,  { useState, useEffect } from "react";
 import { View, Text, StyleSheet } from 'react-native'
 import { ScrollView } from "react-native-gesture-handler";
 import Slides from "../components/Slides";
 import { navigate } from "../RootNavigation";
+import appLoading from 'expo'
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const WelcomeScreen = () => {
+
+    const {token, setToken} = useState(null)
+    
+    const checkToken = async () => {
+        setToken = await AsyncStorage.getItem('fb_token') 
+    }
+
 
     const onSlidesComplete = () => {
         navigate('Auth')
@@ -15,6 +24,12 @@ const WelcomeScreen = () => {
         {text: 'Use this to get a Job', color: '#009688'},
         {text: 'Set your location then swipe away', color: '#03A9F4',}
     ]
+
+    useEffect(() => {
+        checkToken()
+
+    }, [])
+
     return(
         
             <Slides data= { SLIDE_DATA } onComplete={ onSlidesComplete }/>
