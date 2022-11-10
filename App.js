@@ -14,6 +14,7 @@ import SettingScreen from './screens/SettingScreen';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { Provider } from 'react-redux';
 import store from './store';
+import { lazy } from 'react';
 
 
 
@@ -48,7 +49,7 @@ const MainNavigator = () => {
 
 const PrimaryNavigator = () => {
   return (
-      <Tab.Navigator initialRouteName='Welcome'>
+      <Tab.Navigator initialRouteName='Welcome' screenOptions={ lazy }>
         <Tab.Screen name = "Welcome" component={ WelcomeScreen }/>
         <Tab.Screen name = "Auth" component={ AuthScreen } />
         <Tab.Screen name = 'Main' component= { MainNavigator } options={{ headerShown: false }}/>
