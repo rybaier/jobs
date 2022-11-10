@@ -60,7 +60,7 @@ export default function App() {
 
 
   return (
-    <Provider store ={ store }>
+    <Provider store = {store}>
       <NavigationContainer ref={ navigationRef }>
         <Stack.Navigator initialRouteName='Welcome'>
           <Stack.Screen name = "Primary" component={ PrimaryNavigator } options={{ headerShown: false }}/>
