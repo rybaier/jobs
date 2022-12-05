@@ -4,8 +4,7 @@ import { ScrollView } from "react-native-gesture-handler";
 import Slides from "../components/Slides";
 import { navigate } from "../RootNavigation";
 import appLoading from 'expo'
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import AsyncStorage from "react-native"
 const WelcomeScreen = () => {
 
     const {token, setToken} = useState(null)
